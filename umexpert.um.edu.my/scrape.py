@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm
 import json
 import requests
-
+import time
 
 def scrape_content(url):
     try:
@@ -24,16 +24,19 @@ def scrape_content(url):
         return {'url': url, 'title': 'Error', 'body': f"Error fetching or processing the page: {e}"}
 
 def main():
+    current = time.time()
     results = []
     with open('links-umexpert-modified.txt', 'r') as file:
         urls = file.readlines()
-        for url in tqdm(urls, desc='Scraping URLs'): 
+        for url in urls: 
             url = url.strip()
             content = scrape_content(url)
             results.append((content))
 
     with open('umexpert-scraped1.json', 'w') as outfile:
         json.dump(results, outfile, indent=2)
+
+    print(f"Time taken: {time.time() - current:.2f} seconds")
 
 if __name__ == '__main__':
     main()
