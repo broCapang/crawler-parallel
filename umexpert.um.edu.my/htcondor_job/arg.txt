@@ -1,0 +1,4 @@
+/mnt/beegfs/links-umexpert-1.txt /mnt/beegfs/umexpert-scraped1.json
+/mnt/beegfs/links-umexpert-2.txt /mnt/beegfs/umexpert-scraped2.json
+/mnt/beegfs/links-umexpert-3.txt /mnt/beegfs/umexpert-scraped3.json
+/mnt/beegfs/links-umexpert-4.txt /mnt/beegfs/umexpert-scraped4.json

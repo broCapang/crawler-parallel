@@ -1,4 +1,4 @@
-
+import sys
 from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm
 import json
@@ -23,28 +23,31 @@ def scrape_content(url):
     except requests.RequestException as e:
         return {'url': url, 'title': 'Error', 'body': f"Error fetching or processing the page: {e}"}
 
-def save_results(results):
-    with open('umexpert-scraped1.json', 'w') as outfile:
+def save_results(results, output_file):
+    with open(output_file, 'w') as outfile:
         json.dump(results, outfile, indent=2)
 
-def main():
+def main(input_file, output_file):
     current = time.time()
     results = []
-    with open('links-umexpert-modified.txt', 'r') as file:
+    with open(input_file, 'r') as file:
         urls = file.readlines()
-        i = 0
         for url in tqdm(urls): 
             url = url.strip()
             content = scrape_content(url)
-            results.append((content))
-            i += 1
-            if i % 10 == 0:
-                save_results(results)
+            results.append(content)
+            if len(results) % 10 == 0:
+                save_results(results, output_file)
 
-
-    
-
+    save_results(results, output_file)
     print(f"Time taken: {time.time() - current:.2f} seconds")
 
+
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 3:
+        print("Usage: python scrape_content.py <input_file> <output_file>")
+        sys.exit(1)
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    main(input_file, output_file)
+
