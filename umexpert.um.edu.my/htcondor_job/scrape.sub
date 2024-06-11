@@ -6,7 +6,6 @@ arguments               = $(input_file) $(output_file)
 log                     = logs/run_$(Cluster)_$(Process).log
 output                  = logs/run_$(Cluster)_$(Process).out
 error                   = logs/run_$(Cluster)_$(Process).err
-
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 
@@ -14,4 +13,4 @@ request_cpus            = 1
 request_memory          = 1028M
 request_disk            = 1G
 
-queue input_file, output_file from file.txt
+queue input_file, output_file from arg.txt
