@@ -23,18 +23,26 @@ def scrape_content(url):
     except requests.RequestException as e:
         return {'url': url, 'title': 'Error', 'body': f"Error fetching or processing the page: {e}"}
 
+def save_results(results):
+    with open('umexpert-scraped1.json', 'w') as outfile:
+        json.dump(results, outfile, indent=2)
+
 def main():
     current = time.time()
     results = []
     with open('links-umexpert-modified.txt', 'r') as file:
         urls = file.readlines()
-        for url in urls: 
+        i = 0
+        for url in tqdm(urls): 
             url = url.strip()
             content = scrape_content(url)
             results.append((content))
+            i += 1
+            if i % 10 == 0:
+                save_results(results)
 
-    with open('umexpert-scraped1.json', 'w') as outfile:
-        json.dump(results, outfile, indent=2)
+
+    
 
     print(f"Time taken: {time.time() - current:.2f} seconds")
 
