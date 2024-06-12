@@ -1,0 +1,4 @@
+/mnt/beegfs/links-umnews-1.txt /mnt/beegfs/umnews-scraped1.json
+/mnt/beegfs/links-umnews-2.txt /mnt/beegfs/umnews-scraped2.json
+/mnt/beegfs/links-umnews-3.txt /mnt/beegfs/umnews-scraped3.json
+/mnt/beegfs/links-umnews-4.txt /mnt/beegfs/umnews-scraped4.json

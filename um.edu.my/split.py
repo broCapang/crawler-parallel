@@ -10,10 +10,9 @@ def split_file_into_four(input_file):
 
     start = 0
     for i, chunk in enumerate(chunks):
-        with open(f'links-umexpert-{i+1}.txt', 'w') as out_file:
+        with open(f'links-umnews-{i+1}.txt', 'w') as out_file:
             for line in lines[start:start+chunk]:
                 out_file.write(line)
         start += chunk
 
-# Example usage
-split_file_into_four('links-umexpert-modified.txt')
+split_file_into_four('links-umnews.txt')
